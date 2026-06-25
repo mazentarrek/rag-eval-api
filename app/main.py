@@ -6,6 +6,9 @@ from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from core.qdrant import get_qdrant_client, init_collection
+
+
 load_dotenv()
 
 APP_NAME = "RAG Evaluation API"
@@ -16,6 +19,10 @@ APP_ENV = os.getenv("APP_ENV", "development")
 async def lifespan(app: FastAPI):
     print(f"🚀 Starting {APP_NAME} v{APP_VERSION}")
     print(f"🌍 Environment: {APP_ENV}")
+
+    client = get_qdrant_client()
+    init_collection(client)
+
     yield
     print("👋 Shutting down gracefully...")
 
