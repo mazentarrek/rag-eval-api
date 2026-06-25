@@ -1,7 +1,8 @@
 import os
-from sentence_transformers import SentenceTransformer
 
+from sentence_transformers import SentenceTransformer
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+
 
 # ─────────────────────────────────────────────
 # Model config

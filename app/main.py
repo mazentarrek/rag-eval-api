@@ -6,7 +6,9 @@ from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from core.qdrant import get_qdrant_client, init_collection
+from app.core.qdrant import get_qdrant_client, init_collection
+from app.api.v1.upload import router as upload_router
+
 
 
 load_dotenv()
@@ -40,6 +42,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# ── Routers ─────────────────────────────────
+app.include_router(upload_router, prefix="/api/v1", tags=["Upload"])
 
 @app.get("/health", tags=["Health"])
 async def health_check():
