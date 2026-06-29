@@ -6,7 +6,7 @@ QDRANT_HOST = os.getenv("QDRANT_HOST", "localhost")
 QDRANT_PORT = int(os.getenv("QDRANT_PORT", 6333))
 COLLECTION_NAME = os.getenv("QDRANT_COLLECTION_NAME", "documents")
 
-VECTOR_SIZE = 1536  # OpenAI text-embedding-3-small dimensions
+VECTOR_SIZE = 384  # OpenAI text-embedding-3-small dimensions
 
 def get_qdrant_client() -> QdrantClient:
     return QdrantClient(host=QDRANT_HOST, port=QDRANT_PORT)
